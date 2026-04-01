@@ -10,6 +10,7 @@ function RetrieveComponents()
 	Locations = exports["mythic-base"]:FetchComponent("Locations")
 	Logger = exports["mythic-base"]:FetchComponent("Logger")
 	Default = exports["mythic-base"]:FetchComponent("Default")
+	Version = exports["mythic-base"]:FetchComponent("Version")
 end
 
 AddEventHandler("Core:Shared:Ready", function()
@@ -20,6 +21,7 @@ AddEventHandler("Core:Shared:Ready", function()
 		"Locations",
 		"Logger",
 		"Default",
+		"Version",
 	}, function(error)
 		if #error > 0 then
 			return
@@ -29,6 +31,8 @@ AddEventHandler("Core:Shared:Ready", function()
 		RegisterChatCommands()
 		Startup()
 		TriggerEvent("Locations:Server:Startup")
+
+		Version:Check('Mythic-Framework/Mythic-VersionCheckers', GetCurrentResourceName())
 	end)
 end)
 
